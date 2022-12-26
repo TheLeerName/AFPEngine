@@ -34,4 +34,4 @@ otherwise, you can delete the "VIDEOS_ALLOWED" Line on Project.xml
 * Smokey - Sprite Atlas Support
 * Nebula the Zorua - LUA JIT Fork and some Lua reworks
 
-![](assets/preload/images/funkay.png)
+<img src="assets/preload/images/funkay.png" width="50%"/>
