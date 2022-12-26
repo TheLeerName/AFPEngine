@@ -1,7 +1,7 @@
 package;
 
 import utils.AFPText;
-import utils.AFPMenuItem;
+import utils.AFPMainMenuItem;
 #if desktop
 import Discord.DiscordClient;
 #end
@@ -31,7 +31,7 @@ class MainMenuState extends MusicBeatState
 	public static var psychEngineVersion:String = '0.6.2'; //This is also used for Discord RPC
 	public var curSelected(default, set):Int = 0;
 
-	var menuItems:FlxTypedGroup<AFPMenuItem>;
+	var menuItems:FlxTypedGroup<AFPMainMenuItem>;
 	var scrollSound:FlxSound;
 	var camGame:FlxCamera;
 	var camAchievement:FlxCamera;
@@ -137,7 +137,7 @@ class MainMenuState extends MusicBeatState
 		
 		// magenta.scrollFactor.set();
 
-		menuItems = new FlxTypedGroup<AFPMenuItem>();
+		menuItems = new FlxTypedGroup<AFPMainMenuItem>();
 		add(menuItems);
 
 		scrollSound = new FlxSound().loadEmbedded(Paths.sound('scrollMenu'), false, false);
@@ -145,7 +145,7 @@ class MainMenuState extends MusicBeatState
 		for (i in 0...optionShit.length)
 		{
 			var offset:Float = 108 - (Math.max(optionShit.length, 4) - 4) * 80;
-			var menuItem:utils.AFPMenuItem = new utils.AFPMenuItem(0, (i * 140) + offset, optionShit[i], i);
+			var menuItem:utils.AFPMainMenuItem = new utils.AFPMainMenuItem(0, (i * 140) + offset, optionShit[i], i);
 			menuItem.onClick = function (id:Int) {
 				openItem(id);
 			};
@@ -258,7 +258,7 @@ class MainMenuState extends MusicBeatState
 			}
 			#end
 
-			menuItems.forEach(function(spr:AFPMenuItem)
+			menuItems.forEach(function(spr:AFPMainMenuItem)
 			{
 				if (spr.focusGained && curSelected != spr.ID)
 				{

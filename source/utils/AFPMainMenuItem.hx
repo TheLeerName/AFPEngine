@@ -7,7 +7,7 @@ import flixel.FlxSprite;
 /**
 * Menu item for MainMenuState with FlxInputText's focus callbacks
 */
-class AFPMenuItem extends FlxSprite
+class AFPMainMenuItem extends FlxSprite
 {
 	/**
 	 * menu item name
