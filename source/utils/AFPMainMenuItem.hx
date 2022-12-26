@@ -30,15 +30,6 @@ class AFPMainMenuItem extends FlxSprite
 	 */
 	public var onClick:Int->Void;
 
-	/**
-	 * alpha sets when focus gained (mouse cursor overlaps with text)
-	 */
-	public var focusAlpha:Float = 1;
-	/**
-	 * alpha sets when focus lost (mouse cursor not overlaps with text)
-	 */
-	public var unfocusAlpha:Float = 1;
-
 	public function new(x:Float, y:Float, key:String, id:Int)
 	{
 		super(x, y);
@@ -51,20 +42,6 @@ class AFPMainMenuItem extends FlxSprite
 		screenCenter(X);
 	}
 
-	/**
-	 * Call this function to set alpha for focus callbacks
-	 * 
-	 * @param focusAlpha     alpha sets when focus gained (mouse cursor overlaps with text)
-	 * @param unfocusAlpha   alpha sets when focus lost (mouse cursor not overlaps with text)
-	 */
-	public function setFocusAlpha(focusAlpha:Null<Float> = null, unfocusAlpha:Null<Float> = null)
-	{
-		if (focusAlpha != null)
-			this.focusAlpha = focusAlpha;
-		if (unfocusAlpha != null)
-			this.unfocusAlpha = unfocusAlpha;
-	}
-
 	public override function update(elapsed:Float)
 	{
 		super.update(elapsed);
@@ -72,7 +49,6 @@ class AFPMainMenuItem extends FlxSprite
 		focusGained = FlxG.mouse.overlaps(this, cameras[0]);
 		if (focusGained)
 		{
-			alpha = focusAlpha;
 			if (onFocusGain != null)
 				onFocusGain(ID);
 			if (FlxG.mouse.justPressed)
@@ -83,7 +59,6 @@ class AFPMainMenuItem extends FlxSprite
 		}
 		else
 		{
-			alpha = unfocusAlpha;
 			if (onFocusLost != null)
 				onFocusLost(ID);
 		}
