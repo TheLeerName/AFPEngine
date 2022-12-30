@@ -1,5 +1,7 @@
 package;
 
+import flixel.input.keyboard.FlxKey;
+import flixel.input.actions.FlxAction;
 import Conductor.BPMChangeEvent;
 import flixel.FlxG;
 import flixel.addons.ui.FlxUIState;
@@ -14,6 +16,10 @@ import flixel.util.FlxGradient;
 import flixel.FlxState;
 import flixel.FlxCamera;
 import flixel.FlxBasic;
+import flixel.input.FlxInput;
+import Controls;
+
+using StringTools;
 
 class MusicBeatState extends FlxUIState
 {
@@ -29,6 +35,9 @@ class MusicBeatState extends FlxUIState
 
 	public static var camBeat:FlxCamera;
 
+	public var camConsole:FlxCamera;
+	public var console:ConsoleSubState;
+
 	inline function get_controls():Controls
 		return PlayerSettings.player1.controls;
 
@@ -41,6 +50,17 @@ class MusicBeatState extends FlxUIState
 			openSubState(new CustomFadeTransition(0.7, true));
 		}
 		FlxTransitionableState.skipNextTransOut = false;
+
+		camConsole = new FlxCamera();
+		camConsole.bgColor.alpha = 0;
+		FlxG.cameras.add(camConsole, false);
+		console = new ConsoleSubState(0, 0, controls);
+		console.openedCallback = function (newValue:Bool) {
+			// for block input when console opened
+			blockInput(newValue);
+		};
+		console.cameras = [camConsole];
+		add(console);
 	}
 
 	override function update(elapsed:Float)
@@ -66,6 +86,7 @@ class MusicBeatState extends FlxUIState
 		}
 
 		if(FlxG.save.data != null) FlxG.save.data.fullscreen = FlxG.fullscreen;
+		if (FlxG.keys.justPressed.F8) console.opened = !console.opened;
 
 		super.update(elapsed);
 	}
@@ -172,5 +193,113 @@ class MusicBeatState extends FlxUIState
 		var val:Null<Float> = 4;
 		if(PlayState.SONG != null && PlayState.SONG.notes[curSection] != null) val = PlayState.SONG.notes[curSection].sectionBeats;
 		return val == null ? 4 : val;
+	}
+
+	private function blockInput(block:Bool)
+	{
+		if (block)
+		{
+			@:privateAccess controls._ui_up.removeAll();
+			@:privateAccess controls._ui_left.removeAll();
+			@:privateAccess controls._ui_right.removeAll();
+			@:privateAccess controls._ui_down.removeAll();
+			@:privateAccess controls._ui_upP.removeAll();
+			@:privateAccess controls._ui_leftP.removeAll();
+			@:privateAccess controls._ui_rightP.removeAll();
+			@:privateAccess controls._ui_downP.removeAll();
+			@:privateAccess controls._ui_upR.removeAll();
+			@:privateAccess controls._ui_leftR.removeAll();
+			@:privateAccess controls._ui_rightR.removeAll();
+			@:privateAccess controls._ui_downR.removeAll();
+			@:privateAccess controls._note_up.removeAll();
+			@:privateAccess controls._note_left.removeAll();
+			@:privateAccess controls._note_right.removeAll();
+			@:privateAccess controls._note_down.removeAll();
+			@:privateAccess controls._note_upP.removeAll();
+			@:privateAccess controls._note_leftP.removeAll();
+			@:privateAccess controls._note_rightP.removeAll();
+			@:privateAccess controls._note_downP.removeAll();
+			@:privateAccess controls._note_upR.removeAll();
+			@:privateAccess controls._note_leftR.removeAll();
+			@:privateAccess controls._note_rightR.removeAll();
+			@:privateAccess controls._note_downR.removeAll();
+			@:privateAccess controls._accept.removeAll();
+			@:privateAccess controls._back.removeAll();
+			@:privateAccess controls._pause.removeAll();
+			@:privateAccess controls._reset.removeAll();
+
+			FlxG.sound.muteKeys = [];
+			FlxG.sound.volumeDownKeys = [];
+			FlxG.sound.volumeUpKeys = [];
+		}
+		else
+		{
+			if (ClientPrefs.keyBinds.get("ui_up")[0] != NONE) @:privateAccess controls._ui_up.addKey(ClientPrefs.keyBinds.get("ui_up")[0], PRESSED);
+			if (ClientPrefs.keyBinds.get("ui_up")[1] != NONE) @:privateAccess controls._ui_up.addKey(ClientPrefs.keyBinds.get("ui_up")[1], PRESSED);
+			if (ClientPrefs.keyBinds.get("ui_left")[0] != NONE) @:privateAccess controls._ui_left.addKey(ClientPrefs.keyBinds.get("ui_left")[0], PRESSED);
+			if (ClientPrefs.keyBinds.get("ui_left")[1] != NONE) @:privateAccess controls._ui_left.addKey(ClientPrefs.keyBinds.get("ui_left")[1], PRESSED);
+			if (ClientPrefs.keyBinds.get("ui_right")[0] != NONE) @:privateAccess controls._ui_right.addKey(ClientPrefs.keyBinds.get("ui_right")[0], PRESSED);
+			if (ClientPrefs.keyBinds.get("ui_right")[1] != NONE) @:privateAccess controls._ui_right.addKey(ClientPrefs.keyBinds.get("ui_right")[1], PRESSED);
+			if (ClientPrefs.keyBinds.get("ui_down")[0] != NONE) @:privateAccess controls._ui_down.addKey(ClientPrefs.keyBinds.get("ui_down")[0], PRESSED);
+			if (ClientPrefs.keyBinds.get("ui_down")[1] != NONE) @:privateAccess controls._ui_down.addKey(ClientPrefs.keyBinds.get("ui_down")[1], PRESSED);
+
+			if (ClientPrefs.keyBinds.get("ui_up")[0] != NONE) @:privateAccess controls._ui_upP.addKey(ClientPrefs.keyBinds.get("ui_up")[0], JUST_PRESSED);
+			if (ClientPrefs.keyBinds.get("ui_up")[1] != NONE) @:privateAccess controls._ui_upP.addKey(ClientPrefs.keyBinds.get("ui_up")[1], JUST_PRESSED);
+			if (ClientPrefs.keyBinds.get("ui_left")[0] != NONE) @:privateAccess controls._ui_leftP.addKey(ClientPrefs.keyBinds.get("ui_left")[0], JUST_PRESSED);
+			if (ClientPrefs.keyBinds.get("ui_left")[1] != NONE) @:privateAccess controls._ui_leftP.addKey(ClientPrefs.keyBinds.get("ui_left")[1], JUST_PRESSED);
+			if (ClientPrefs.keyBinds.get("ui_right")[0] != NONE) @:privateAccess controls._ui_rightP.addKey(ClientPrefs.keyBinds.get("ui_right")[0], JUST_PRESSED);
+			if (ClientPrefs.keyBinds.get("ui_right")[1] != NONE) @:privateAccess controls._ui_rightP.addKey(ClientPrefs.keyBinds.get("ui_right")[1], JUST_PRESSED);
+			if (ClientPrefs.keyBinds.get("ui_down")[0] != NONE) @:privateAccess controls._ui_downP.addKey(ClientPrefs.keyBinds.get("ui_down")[0], JUST_PRESSED);
+			if (ClientPrefs.keyBinds.get("ui_down")[1] != NONE) @:privateAccess controls._ui_downP.addKey(ClientPrefs.keyBinds.get("ui_down")[1], JUST_PRESSED);
+
+			if (ClientPrefs.keyBinds.get("ui_up")[0] != NONE) @:privateAccess controls._ui_upR.addKey(ClientPrefs.keyBinds.get("ui_up")[0], JUST_RELEASED);
+			if (ClientPrefs.keyBinds.get("ui_up")[1] != NONE) @:privateAccess controls._ui_upR.addKey(ClientPrefs.keyBinds.get("ui_up")[1], JUST_RELEASED);
+			if (ClientPrefs.keyBinds.get("ui_left")[0] != NONE) @:privateAccess controls._ui_leftR.addKey(ClientPrefs.keyBinds.get("ui_left")[0], JUST_RELEASED);
+			if (ClientPrefs.keyBinds.get("ui_left")[1] != NONE) @:privateAccess controls._ui_leftR.addKey(ClientPrefs.keyBinds.get("ui_left")[1], JUST_RELEASED);
+			if (ClientPrefs.keyBinds.get("ui_right")[0] != NONE) @:privateAccess controls._ui_rightR.addKey(ClientPrefs.keyBinds.get("ui_right")[0], JUST_RELEASED);
+			if (ClientPrefs.keyBinds.get("ui_right")[1] != NONE) @:privateAccess controls._ui_rightR.addKey(ClientPrefs.keyBinds.get("ui_right")[1], JUST_RELEASED);
+			if (ClientPrefs.keyBinds.get("ui_down")[0] != NONE) @:privateAccess controls._ui_downR.addKey(ClientPrefs.keyBinds.get("ui_down")[0], JUST_RELEASED);
+			if (ClientPrefs.keyBinds.get("ui_down")[1] != NONE) @:privateAccess controls._ui_downR.addKey(ClientPrefs.keyBinds.get("ui_down")[1], JUST_RELEASED);
+
+			if (ClientPrefs.keyBinds.get("note_up")[0] != NONE) @:privateAccess controls._note_up.addKey(ClientPrefs.keyBinds.get("note_up")[0], PRESSED);
+			if (ClientPrefs.keyBinds.get("note_up")[1] != NONE) @:privateAccess controls._note_up.addKey(ClientPrefs.keyBinds.get("note_up")[1], PRESSED);
+			if (ClientPrefs.keyBinds.get("note_left")[0] != NONE) @:privateAccess controls._note_left.addKey(ClientPrefs.keyBinds.get("note_left")[0], PRESSED);
+			if (ClientPrefs.keyBinds.get("note_left")[1] != NONE) @:privateAccess controls._note_left.addKey(ClientPrefs.keyBinds.get("note_left")[1], PRESSED);
+			if (ClientPrefs.keyBinds.get("note_right")[0] != NONE) @:privateAccess controls._note_right.addKey(ClientPrefs.keyBinds.get("note_right")[0], PRESSED);
+			if (ClientPrefs.keyBinds.get("note_right")[1] != NONE) @:privateAccess controls._note_right.addKey(ClientPrefs.keyBinds.get("note_right")[1], PRESSED);
+			if (ClientPrefs.keyBinds.get("note_down")[0] != NONE) @:privateAccess controls._note_down.addKey(ClientPrefs.keyBinds.get("note_down")[0], PRESSED);
+			if (ClientPrefs.keyBinds.get("note_down")[1] != NONE) @:privateAccess controls._note_down.addKey(ClientPrefs.keyBinds.get("note_down")[1], PRESSED);
+
+			if (ClientPrefs.keyBinds.get("note_up")[0] != NONE) @:privateAccess controls._note_upP.addKey(ClientPrefs.keyBinds.get("note_up")[0], JUST_PRESSED);
+			if (ClientPrefs.keyBinds.get("note_up")[1] != NONE) @:privateAccess controls._note_upP.addKey(ClientPrefs.keyBinds.get("note_up")[1], JUST_PRESSED);
+			if (ClientPrefs.keyBinds.get("note_left")[0] != NONE) @:privateAccess controls._note_leftP.addKey(ClientPrefs.keyBinds.get("note_left")[0], JUST_PRESSED);
+			if (ClientPrefs.keyBinds.get("note_left")[1] != NONE) @:privateAccess controls._note_leftP.addKey(ClientPrefs.keyBinds.get("note_left")[1], JUST_PRESSED);
+			if (ClientPrefs.keyBinds.get("note_right")[0] != NONE) @:privateAccess controls._note_rightP.addKey(ClientPrefs.keyBinds.get("note_right")[0], JUST_PRESSED);
+			if (ClientPrefs.keyBinds.get("note_right")[1] != NONE) @:privateAccess controls._note_rightP.addKey(ClientPrefs.keyBinds.get("note_right")[1], JUST_PRESSED);
+			if (ClientPrefs.keyBinds.get("note_down")[0] != NONE) @:privateAccess controls._note_downP.addKey(ClientPrefs.keyBinds.get("note_down")[0], JUST_PRESSED);
+			if (ClientPrefs.keyBinds.get("note_down")[1] != NONE) @:privateAccess controls._note_downP.addKey(ClientPrefs.keyBinds.get("note_down")[1], JUST_PRESSED);
+
+			if (ClientPrefs.keyBinds.get("note_up")[0] != NONE) @:privateAccess controls._note_upR.addKey(ClientPrefs.keyBinds.get("note_up")[0], JUST_RELEASED);
+			if (ClientPrefs.keyBinds.get("note_up")[1] != NONE) @:privateAccess controls._note_upR.addKey(ClientPrefs.keyBinds.get("note_up")[1], JUST_RELEASED);
+			if (ClientPrefs.keyBinds.get("note_left")[0] != NONE) @:privateAccess controls._note_leftR.addKey(ClientPrefs.keyBinds.get("note_left")[0], JUST_RELEASED);
+			if (ClientPrefs.keyBinds.get("note_left")[1] != NONE) @:privateAccess controls._note_leftR.addKey(ClientPrefs.keyBinds.get("note_left")[1], JUST_RELEASED);
+			if (ClientPrefs.keyBinds.get("note_right")[0] != NONE) @:privateAccess controls._note_rightR.addKey(ClientPrefs.keyBinds.get("note_right")[0], JUST_RELEASED);
+			if (ClientPrefs.keyBinds.get("note_right")[1] != NONE) @:privateAccess controls._note_rightR.addKey(ClientPrefs.keyBinds.get("note_right")[1], JUST_RELEASED);
+			if (ClientPrefs.keyBinds.get("note_down")[0] != NONE) @:privateAccess controls._note_downR.addKey(ClientPrefs.keyBinds.get("note_down")[0], JUST_RELEASED);
+			if (ClientPrefs.keyBinds.get("note_down")[1] != NONE) @:privateAccess controls._note_downR.addKey(ClientPrefs.keyBinds.get("note_down")[1], JUST_RELEASED);
+
+			if (ClientPrefs.keyBinds.get("accept")[0] != NONE) @:privateAccess controls._accept.addKey(ClientPrefs.keyBinds.get("accept")[0], JUST_PRESSED);
+			if (ClientPrefs.keyBinds.get("accept")[1] != NONE) @:privateAccess controls._accept.addKey(ClientPrefs.keyBinds.get("accept")[1], JUST_PRESSED);
+			if (ClientPrefs.keyBinds.get("back")[0] != NONE) @:privateAccess controls._back.addKey(ClientPrefs.keyBinds.get("back")[0], JUST_PRESSED);
+			if (ClientPrefs.keyBinds.get("back")[1] != NONE) @:privateAccess controls._back.addKey(ClientPrefs.keyBinds.get("back")[1], JUST_PRESSED);
+			if (ClientPrefs.keyBinds.get("pause")[0] != NONE) @:privateAccess controls._pause.addKey(ClientPrefs.keyBinds.get("pause")[0], JUST_PRESSED);
+			if (ClientPrefs.keyBinds.get("pause")[1] != NONE) @:privateAccess controls._pause.addKey(ClientPrefs.keyBinds.get("pause")[1], JUST_PRESSED);
+			if (ClientPrefs.keyBinds.get("reset")[0] != NONE) @:privateAccess controls._reset.addKey(ClientPrefs.keyBinds.get("reset")[0], JUST_PRESSED);
+			if (ClientPrefs.keyBinds.get("reset")[1] != NONE) @:privateAccess controls._reset.addKey(ClientPrefs.keyBinds.get("reset")[1], JUST_PRESSED);
+
+			FlxG.sound.muteKeys = TitleState.muteKeys;
+			FlxG.sound.volumeDownKeys = TitleState.volumeDownKeys;
+			FlxG.sound.volumeUpKeys = TitleState.volumeUpKeys;
+		}
 	}
 }
