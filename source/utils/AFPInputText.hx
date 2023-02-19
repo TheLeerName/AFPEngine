@@ -262,10 +262,7 @@ class AFPInputText extends FlxSpriteGroup
 	{
 		super.update(elapsed);
 		if (FlxG.mouse.justPressed)
-		{
 			focusGained = mouseOverlaps(textObject);
-			trace(focusGained);
-		}
 
 		if (FlxG.keys.justPressed.ESCAPE && focusGained)
 			focusGained = false;
