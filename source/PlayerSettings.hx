@@ -7,7 +7,6 @@ import flixel.util.FlxSignal;
 
 // import ui.DeviceManager;
 // import props.Player;
-@:build(macros.SetCallbacksBuilding.build())
 class PlayerSettings
 {
 	static public var numPlayers(default, null) = 0;
