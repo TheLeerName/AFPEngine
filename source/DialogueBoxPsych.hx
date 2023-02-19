@@ -54,6 +54,7 @@ typedef DialogueLine = {
 	var sound:Null<String>;
 }
 
+@:build(macros.SetCallbacksBuilding.build())
 class DialogueCharacter extends FlxSprite
 {
 	private static var IDLE_SUFFIX:String = '-IDLE';
@@ -163,6 +164,7 @@ class DialogueCharacter extends FlxSprite
 }
 
 // TO DO: Clean code? Maybe? idk
+@:build(macros.SetCallbacksBuilding.build())
 class DialogueBoxPsych extends FlxSpriteGroup
 {
 	var dialogue:TypedAlphabet;

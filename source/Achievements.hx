@@ -9,6 +9,7 @@ import flixel.text.FlxText;
 
 using StringTools;
 
+@:build(macros.SetCallbacksBuilding.build())
 class Achievements {
 	public static var achievementsStuff:Array<Dynamic> = [ //Name, Description, Achievement save tag, Hidden achievement
 		["Freaky on a Friday Night",	"Play on a Friday... Night.",						'friday_night_play',	 true],
@@ -65,6 +66,7 @@ class Achievements {
 	}
 }
 
+@:build(macros.SetCallbacksBuilding.build())
 class AttachedAchievement extends FlxSprite {
 	public var sprTracker:FlxSprite;
 	private var tag:String;
@@ -98,6 +100,7 @@ class AttachedAchievement extends FlxSprite {
 	}
 }
 
+@:build(macros.SetCallbacksBuilding.build())
 class AchievementObject extends FlxSpriteGroup {
 	public var onFinish:Void->Void = null;
 	var alphaTween:FlxTween;

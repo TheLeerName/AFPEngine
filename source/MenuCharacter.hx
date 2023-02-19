@@ -19,6 +19,7 @@ typedef MenuCharacterFile = {
 	var flipX:Bool;
 }
 
+@:build(macros.SetCallbacksBuilding.build())
 class MenuCharacter extends FlxSprite
 {
 	public var character:String;

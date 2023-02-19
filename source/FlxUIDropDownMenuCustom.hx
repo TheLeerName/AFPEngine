@@ -37,6 +37,7 @@ The differences are the following:
 /**
  * @author larsiusprime
  */
+@:build(macros.SetCallbacksBuilding.build())
 class FlxUIDropDownMenuCustom extends FlxUIGroup implements IFlxUIWidget implements IFlxUIClickable implements IHasParams
 {
 	public var skipButtonUpdate(default, set):Bool;

@@ -3,6 +3,7 @@ package;
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
 
+@:build(macros.SetCallbacksBuilding.build())
 class AttachedText extends Alphabet
 {
 	public var offsetX:Float = 0;

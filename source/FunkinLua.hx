@@ -59,6 +59,7 @@ import Discord;
 
 using StringTools;
 
+@:build(macros.SetCallbacksBuilding.build())
 class FunkinLua {
 	public static var Function_Stop:Dynamic = 1;
 	public static var Function_Continue:Dynamic = 0;

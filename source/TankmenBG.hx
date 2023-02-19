@@ -4,6 +4,7 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
 
+@:build(macros.SetCallbacksBuilding.build())
 class TankmenBG extends FlxSprite
 {
 	public static var animationNotes:Array<Dynamic> = [];

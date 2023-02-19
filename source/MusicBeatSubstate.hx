@@ -6,6 +6,8 @@ import flixel.FlxSubState;
 import flixel.FlxBasic;
 import flixel.FlxSprite;
 
+@:autoBuild(macros.SetCallbacksBuilding.build())
+@:build(macros.SetCallbacksBuilding.build())
 class MusicBeatSubstate extends FlxSubState
 {
 	public function new()

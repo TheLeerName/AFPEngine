@@ -6,6 +6,7 @@ import flixel.graphics.frames.FlxAtlasFrames;
 
 using StringTools;
 
+@:build(macros.SetCallbacksBuilding.build())
 class StrumNote extends FlxSprite
 {
 	private var colorSwap:ColorSwap;

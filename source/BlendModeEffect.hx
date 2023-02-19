@@ -8,6 +8,7 @@ typedef BlendModeShader =
 	var uBlendColor:ShaderParameter<Float>;
 }
 
+@:build(macros.SetCallbacksBuilding.build())
 class BlendModeEffect
 {
 	public var shader(default, null):BlendModeShader;

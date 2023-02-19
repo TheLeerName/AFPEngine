@@ -3,6 +3,7 @@ package;
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
 
+@:build(macros.SetCallbacksBuilding.build())
 class CheckboxThingie extends FlxSprite
 {
 	public var sprTracker:FlxSprite;

@@ -31,6 +31,7 @@ typedef SwagSong =
 	var validScore:Bool;
 }
 
+@:build(macros.SetCallbacksBuilding.build())
 class Song
 {
 	public var song:String;

@@ -17,6 +17,7 @@ typedef EventNote = {
 	value2:String
 }
 
+@:build(macros.SetCallbacksBuilding.build())
 class Note extends FlxSprite
 {
 	public var extraData:Map<String,Dynamic> = [];

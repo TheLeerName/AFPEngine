@@ -15,6 +15,7 @@ import openfl.utils.Assets;
 
 using StringTools;
 
+@:build(macros.SetCallbacksBuilding.build())
 class CoolUtil
 {
 	public static var defaultDifficulties:Array<String> = [

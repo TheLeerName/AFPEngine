@@ -4,6 +4,7 @@ import flixel.FlxSprite;
 
 using StringTools;
 
+@:build(macros.SetCallbacksBuilding.build())
 class AttachedSprite extends FlxSprite
 {
 	public var sprTracker:FlxSprite;

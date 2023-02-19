@@ -6,6 +6,7 @@ import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.math.FlxMath;
 import flixel.util.FlxColor;
 
+@:build(macros.SetCallbacksBuilding.build())
 class MenuItem extends FlxSprite
 {
 	public var targetY:Float = 0;

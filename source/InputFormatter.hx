@@ -3,6 +3,7 @@ import flixel.input.keyboard.FlxKey;
 
 using StringTools;
 
+@:build(macros.SetCallbacksBuilding.build())
 class InputFormatter {
 	public static function getKeyName(key:FlxKey):String {
 		switch (key) {

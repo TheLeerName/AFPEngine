@@ -28,6 +28,7 @@ typedef WeekFile =
 	var difficulties:String;
 }
 
+@:build(macros.SetCallbacksBuilding.build())
 class WeekData {
 	public static var weeksLoaded:Map<String, WeekData> = new Map<String, WeekData>();
 	public static var weeksList:Array<String> = [];

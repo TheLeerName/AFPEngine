@@ -16,6 +16,7 @@ import flixel.group.FlxSpriteGroup;
 import animateatlas.AtlasFrameMaker;
 import flixel.util.FlxSort;
 
+@:build(macros.SetCallbacksBuilding.build())
 class CutsceneHandler extends FlxBasic
 {
 	public var timedEvents:Array<Dynamic> = [];

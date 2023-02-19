@@ -44,6 +44,7 @@ typedef AnimArray = {
 	var offsets:Array<Int>;
 }
 
+@:build(macros.SetCallbacksBuilding.build())
 class Character extends FlxSprite
 {
 	public var animOffsets:Map<String, Array<Dynamic>>;

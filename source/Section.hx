@@ -12,6 +12,7 @@ typedef SwagSection =
 	var altAnim:Bool;
 }
 
+@:build(macros.SetCallbacksBuilding.build())
 class Section
 {
 	public var sectionNotes:Array<Dynamic> = [];

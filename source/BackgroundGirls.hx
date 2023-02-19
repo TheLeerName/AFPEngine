@@ -3,6 +3,7 @@ package;
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
 
+@:build(macros.SetCallbacksBuilding.build())
 class BackgroundGirls extends FlxSprite
 {
 	var isPissed:Bool = true;

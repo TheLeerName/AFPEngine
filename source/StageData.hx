@@ -28,6 +28,7 @@ typedef StageFile = {
 	var camera_speed:Null<Float>;
 }
 
+@:build(macros.SetCallbacksBuilding.build())
 class StageData {
 	public static var forceNextDirectory:String = null;
 	public static function loadDirectory(SONG:SwagSong) {

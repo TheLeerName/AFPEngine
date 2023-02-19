@@ -7,6 +7,7 @@ import flixel.util.FlxTimer;
 
 using StringTools;
 
+@:build(macros.SetCallbacksBuilding.build())
 class Boyfriend extends Character
 {
 	public var startedDeath:Bool = false;

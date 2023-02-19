@@ -3,6 +3,7 @@ package;
 import flixel.FlxG;
 import flixel.system.FlxAssets.FlxShader;
 
+@:build(macros.SetCallbacksBuilding.build())
 class ColorSwap {
 	public var shader(default, null):ColorSwapShader = new ColorSwapShader();
 	public var hue(default, set):Float = 0;

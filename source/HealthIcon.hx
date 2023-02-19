@@ -5,6 +5,7 @@ import openfl.utils.Assets as OpenFlAssets;
 
 using StringTools;
 
+@:build(macros.SetCallbacksBuilding.build())
 class HealthIcon extends FlxSprite
 {
 	public var sprTracker:FlxSprite;

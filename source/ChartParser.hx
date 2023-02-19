@@ -4,6 +4,7 @@ import flixel.util.FlxStringUtil;
 
 using StringTools;
 
+@:build(macros.SetCallbacksBuilding.build())
 class ChartParser
 {
 	static public function parse(songName:String, section:Int):Array<Dynamic>

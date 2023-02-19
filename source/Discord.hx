@@ -10,6 +10,7 @@ import llua.State;
 
 using StringTools;
 
+@:build(macros.SetCallbacksBuilding.build())
 class DiscordClient
 {
 	public static var isInitialized:Bool = false;

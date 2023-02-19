@@ -19,6 +19,7 @@ enum Alignment
 	RIGHT;
 }
 
+@:build(macros.SetCallbacksBuilding.build())
 class Alphabet extends FlxSpriteGroup
 {
 	public var text(default, set):String;
@@ -260,6 +261,7 @@ typedef Letter = {
 	?offsetsBold:Array<Float>
 }
 
+@:build(macros.SetCallbacksBuilding.build())
 class AlphaCharacter extends FlxSprite
 {
 	//public static var alphabet:String = "abcdefghijklmnopqrstuvwxyz";

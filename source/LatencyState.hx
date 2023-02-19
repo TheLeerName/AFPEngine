@@ -6,6 +6,7 @@ import flixel.FlxState;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.text.FlxText;
 
+@:build(macros.SetCallbacksBuilding.build())
 class LatencyState extends FlxState
 {
 	var offsetText:FlxText;

@@ -3,6 +3,7 @@ package;
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
 
+@:build(macros.SetCallbacksBuilding.build())
 class BackgroundDancer extends FlxSprite
 {
 	public function new(x:Float, y:Float)

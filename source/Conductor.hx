@@ -15,6 +15,7 @@ typedef BPMChangeEvent =
 	@:optional var stepCrochet:Float;
 }
 
+@:build(macros.SetCallbacksBuilding.build())
 class Conductor
 {
 	public static var bpm:Float = 100;
@@ -155,6 +156,7 @@ class Conductor
 	}
 }
 
+@:build(macros.SetCallbacksBuilding.build())
 class Rating
 {
 	public var name:String = '';

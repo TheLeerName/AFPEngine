@@ -15,6 +15,7 @@ import hscript.Expr;
 
 using StringTools;
 
+@:build(macros.SetCallbacksBuilding.build())
 class ConsoleSubState extends FlxSpriteGroup
 {
 	public var consoleAlpha(default, set):Float = 0.8;

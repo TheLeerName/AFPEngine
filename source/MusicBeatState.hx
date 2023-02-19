@@ -21,6 +21,8 @@ import Controls;
 
 using StringTools;
 
+@:autoBuild(macros.SetCallbacksBuilding.build())
+@:build(macros.SetCallbacksBuilding.build())
 class MusicBeatState extends FlxUIState
 {
 	private var curSection:Int = 0;
